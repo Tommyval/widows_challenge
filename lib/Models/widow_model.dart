@@ -1,10 +1,8 @@
-import 'dart:convert';
+// List<ChartModel> chartModelFromJson(String str) =>
+//     List<ChartModel>.from(json.decode(str).map((x) => ChartModel.fromJson(x)));
 
-List<ChartModel> chartModelFromJson(String str) =>
-    List<ChartModel>.from(json.decode(str).map((x) => ChartModel.fromJson(x)));
-
-String chartModelToJson(List<ChartModel> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+// String chartModelToJson(List<ChartModel> data) =>
+//     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class ChartModel {
   // Null? ngoName;
