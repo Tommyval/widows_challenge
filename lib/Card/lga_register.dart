@@ -14,7 +14,7 @@ class _LgaRegisterState extends State<LgaRegister> {
   List<ChartModel> lgaNo = [];
   NetworkHelper nethelper = NetworkHelper();
   Future<void> getLga() async {
-    final data = await nethelper.getAssetsFromLocalJson();
+    final lgaNo = await nethelper.getAssetsFromLocalJson();
   }
 
   @override
