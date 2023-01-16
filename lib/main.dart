@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:widows_challenge/pages/mainpage.dart';
+import 'package:widows_challenge/PieChart/employment_status.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +11,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: MainPage());
+    return MaterialApp(
+      home: EmploymentStatus(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }

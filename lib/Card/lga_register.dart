@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:widows_challenge/Models/widow_model.dart';
 import 'package:widows_challenge/network/network_helper.dart';
 
 class LgaRegister extends StatefulWidget {
@@ -11,10 +10,18 @@ class LgaRegister extends StatefulWidget {
 }
 
 class _LgaRegisterState extends State<LgaRegister> {
-  List<ChartModel> lgaNo = [];
-  NetworkHelper nethelper = NetworkHelper();
+  final NetworkHelper nethelper = NetworkHelper();
   Future<void> getLga() async {
-    final lgaNo = await nethelper.getAssetsFromLocalJson();
+    await nethelper.getAssetsFromLocalJson();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await getLga();
+    });
   }
 
   @override
@@ -51,7 +58,7 @@ class _LgaRegisterState extends State<LgaRegister> {
                   top: 80,
                   left: 170,
                   child: Text(
-                    '36',
+                    nethelper.lga.length.toString(),
                     style: GoogleFonts.dmSans(
                         fontWeight: FontWeight.w700, fontSize: 32),
                   )),

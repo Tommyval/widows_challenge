@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:widows_challenge/network/network_helper.dart';
 
-import '../Models/widow_model.dart';
-
 class WidowRegister extends StatefulWidget {
   const WidowRegister({Key? key}) : super(key: key);
 
@@ -12,19 +10,17 @@ class WidowRegister extends StatefulWidget {
 }
 
 class _WidowRegisterState extends State<WidowRegister> {
-  List<ChartModel> widows = [];
   final NetworkHelper _networkHelper = NetworkHelper();
   Future<void> getNo() async {
-    _networkHelper.getAssetsFromLocalJson().then((value) {
-      widows = value;
-      setState(() {});
-      print(widows.length);
-    });
+    await _networkHelper.getAssetsFromLocalJson();
+    setState(() {});
   }
 
   @override
   void initState() {
-    getNo();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await getNo();
+    });
     super.initState();
   }
 
@@ -62,7 +58,7 @@ class _WidowRegisterState extends State<WidowRegister> {
                   top: 80,
                   left: 140,
                   child: Text(
-                    widows.length.toString(),
+                    _networkHelper.response.length.toString(),
                     style: GoogleFonts.rubik(
                         fontWeight: FontWeight.w700, fontSize: 32),
                   )),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:widows_challenge/Barchart/barchart_occupation.dart';
+import 'package:widows_challenge/Barchart/barchart_widows.dart';
 import 'package:widows_challenge/Card/lga_register.dart';
 import 'package:widows_challenge/Card/widows_register.dart';
 
@@ -9,9 +11,22 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: const [WidowRegister(), LgaRegister()],
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: const [
+              WidowRegister(),
+              LgaRegister(),
+              SizedBox(
+                height: 20,
+              ),
+              Barchat(),
+              SizedBox(
+                height: 20,
+              ),
+              BarOccupation()
+            ],
+          ),
         ),
       ),
     );

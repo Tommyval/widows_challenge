@@ -1,95 +1,87 @@
 import 'package:flutter/material.dart';
-import 'package:charts_flutter_new/flutter.dart' as charts;
+import 'package:widows_challenge/Models/occupation_model.dart';
 import 'package:widows_challenge/network/network_helper.dart';
+import 'package:charts_flutter_new/flutter.dart' as charts;
 
-import '../Models/widow_model.dart';
-
-class Barchat extends StatefulWidget {
-  const Barchat({Key? key}) : super(key: key);
+class BarOccupation extends StatefulWidget {
+  const BarOccupation({Key? key}) : super(key: key);
 
   @override
-  State<Barchat> createState() => _BarchatState();
+  State<BarOccupation> createState() => _BarOccupationState();
 }
 
-class _BarchatState extends State<Barchat> {
-  List<ChartModel> chart = [];
+class _BarOccupationState extends State<BarOccupation> {
+  List<WorkType> differentWork = [];
+  final NetworkHelper difnetworkHelper = NetworkHelper();
+  Future<void> getWork() async {
+    await difnetworkHelper.getAssetsFromLocalJson();
+    setState(() {});
+  }
 
-  bool loading = true;
-  final NetworkHelper _networkHelper = NetworkHelper();
   @override
   void initState() {
     super.initState();
-    _networkHelper.getAssetsFromLocalJson();
-    getData();
-  }
-
-  Future<void> getData() async {
-    var chartInfo = await _networkHelper.getAssetsFromLocalJson();
-
-    setState(() {
-      chart = chartInfo;
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      getWork();
     });
-    print(chart.length);
   }
 
-  List<charts.Series<ChartModel, String>> _createSampleData() {
+  List<charts.Series<WorkType, String>> _createSampleData() {
     return [
-      charts.Series<ChartModel, String>(
-          data: chart,
-          id: 'occupation',
-          colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-          domainFn: (ChartModel chatmodel, _) => chatmodel.lga!,
-          measureFn: (ChartModel chatmodel, _) => chatmodel.numberOfChildren)
+      charts.Series<WorkType, String>(
+        data: differentWork,
+        id: 'occupation',
+        colorFn: (_, __) =>
+            charts.ColorUtil.fromDartColor(const Color(0xff039CDD)),
+        domainFn: (WorkType worktype, _) => worktype.works,
+        measureFn: (WorkType workType, _) => workType.workNo,
+      )
     ];
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: loading
-            ? const CircularProgressIndicator()
-            : SizedBox(
-                height: 300,
-                child: charts.BarChart(
+    difnetworkHelper.occupy.forEach(
+      (key, value) {
+        differentWork.add(WorkType(works: key, workNo: value));
+      },
+    );
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20),
+      child: SizedBox(
+        height: 700,
+        child: Card(
+          child: FutureBuilder(
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              } else {
+                return charts.BarChart(
                   _createSampleData(),
                   animate: false,
-                ),
-              ),
+                  behaviors: [
+                    charts.ChartTitle(
+                      'WIDOWS TYPE OF OCCUPATION',
+                      behaviorPosition: charts.BehaviorPosition.top,
+                      titleOutsideJustification:
+                          charts.OutsideJustification.start,
+                    )
+                  ],
+                  domainAxis: const charts.OrdinalAxisSpec(
+                      renderSpec: charts.SmallTickRendererSpec(
+                          minimumPaddingBetweenLabelsPx: 0,
+                          labelAnchor: charts.TickLabelAnchor.centered,
+                          labelStyle: charts.TextStyleSpec(
+                            fontSize: 10,
+                            color: charts.MaterialPalette.black,
+                          ),
+                          labelRotation: 45)),
+                );
+              }
+            },
+          ),
+        ),
       ),
     );
   }
 }
-
-// class _BarchatState extends State<Barchat> {
-//   List<ChartModel> chart = [];
-//   bool loading = true;
-//   final NetworkHelper _networkHelper = NetworkHelper();
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _networkHelper.getAssetsFromLocalJson();
-//     getData();
-//   }
-
-//   Future<void> getData() async {
-//     var chartInfo = await _networkHelper.getAssetsFromLocalJson();
- 
-//     setState(() {
-//       chart = chartInfo;
-//     });   
-//   }
-
-  
-//   List<charts.Series<ChartModel, String>> _createSampleData() {
-
-//     return [
-//       charts.Series<ChartModel, String>(
-//           data: chart,
-//           id: 'occupation',
-//           colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-//           domainFn: (ChartModel chatmodel, _) => chatmodel.lga!,
-//           measureFn: (ChartModel chatmodel, _) => chatmodel.numberOfChildren)
-//     ];
-//   }
