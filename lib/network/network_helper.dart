@@ -6,6 +6,7 @@ class NetworkHelper {
   Map<String, dynamic> lga = {};
   Map<String, dynamic> empment = {};
   Map<String, dynamic> occupy = {};
+  Map<String, dynamic> affliation = {};
 
   List<dynamic> response = [];
   Future<void> getAssetsFromLocalJson() async {
@@ -42,7 +43,13 @@ class NetworkHelper {
       } else {
         occupy[myKey3] = 1;
       }
+      String myKey4 = item['ngoMembership'];
+      if (affliation.containsKey(myKey4)) {
+        affliation[myKey4] = affliation[myKey4] + 1;
+      } else {
+        affliation[myKey4] = 1;
+      }
     }
-    print('occupation: $occupy');
+    print('ngoMembership: $affliation');
   }
 }

@@ -61,7 +61,13 @@ class _EmploymentStatusState extends State<EmploymentStatus> {
                 //   _createSampleData(),
                 // );
                 //
-                return SfCircularChart(series: <CircularSeries>[
+                return SfCircularChart(palette: const <Color>[
+                  Colors.amber,
+                  Colors.brown,
+                  Colors.green,
+                  Colors.redAccent,
+                  Colors.blueAccent
+                ], series: <CircularSeries>[
                   PieSeries<Employment, String>(
                       dataSource: employmentType,
                       xValueMapper: ((Employment employment, _) =>
