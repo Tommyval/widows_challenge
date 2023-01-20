@@ -48,7 +48,13 @@ class _BarOccupationState extends State<BarOccupation> {
     );
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20),
-      child: SizedBox(
+      child: Container(
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+            color: const Color(0xff717171).withOpacity(0.2),
+            blurRadius: 20.0,
+          ),
+        ]),
         height: 700,
         child: Card(
           child: FutureBuilder(

@@ -56,7 +56,7 @@ class _LgaRegisterState extends State<LgaRegister> {
               ),
               Positioned(
                   top: 80,
-                  left: 170,
+                  left: 190,
                   child: Text(
                     nethelper.lga.length.toString(),
                     style: GoogleFonts.dmSans(

@@ -3,6 +3,8 @@ import 'package:widows_challenge/Barchart/barchart_occupation.dart';
 import 'package:widows_challenge/Barchart/barchart_widows.dart';
 import 'package:widows_challenge/Card/lga_register.dart';
 import 'package:widows_challenge/Card/widows_register.dart';
+import 'package:widows_challenge/PieChart/employment_status.dart';
+import 'package:widows_challenge/PieChart/ngomembership.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -20,6 +22,8 @@ class MainPage extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
+              EmploymentStatus(),
+              Ngomemebership(),
               Barchat(),
               SizedBox(
                 height: 20,

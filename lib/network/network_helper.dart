@@ -50,6 +50,6 @@ class NetworkHelper {
         affliation[myKey4] = 1;
       }
     }
-    print('ngoMembership: $affliation');
+    // print('ngoMembership: $affliation');
   }
 }

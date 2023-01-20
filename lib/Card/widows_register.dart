@@ -56,7 +56,7 @@ class _WidowRegisterState extends State<WidowRegister> {
               ),
               Positioned(
                   top: 80,
-                  left: 140,
+                  left: 160,
                   child: Text(
                     _networkHelper.response.length.toString(),
                     style: GoogleFonts.rubik(

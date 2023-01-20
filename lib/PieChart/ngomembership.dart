@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:widows_challenge/network/network_helper.dart';
-import 'package:charts_flutter_new/flutter.dart' as charts;
 import '../Models/ngomembership_model.dart';
 
 class Ngomemebership extends StatefulWidget {
@@ -28,19 +28,6 @@ class _NgomemebershipState extends State<Ngomemebership> {
     });
   }
 
-  List<charts.Series<Ngo, String>> _createSampleData() {
-    return [
-      charts.Series<Ngo, String>(
-        data: ngoType,
-        id: 'occupation',
-        colorFn: (_, __) =>
-            charts.ColorUtil.fromDartColor(const Color(0xff039CDD)),
-        domainFn: (Ngo employment, _) => employment.member,
-        measureFn: (Ngo employment, _) => employment.memberNo,
-      )
-    ];
-  }
-
   @override
   Widget build(BuildContext context) {
     _netWorkhelper.affliation.forEach(
@@ -48,26 +35,38 @@ class _NgomemebershipState extends State<Ngomemebership> {
         ngoType.add(Ngo(member: key, memberNo: value));
       },
     );
-    return Container(
-      child: Card(child: FutureBuilder(
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          } else {
-            return charts.PieChart(_createSampleData());
-          }
-        },
-      )
-
-          // SfCircularChart( series: <CircularSeries>[
-          //           PieSeries<Ngo, String>(
-          //               dataSource: ngoType,
-          //               xValueMapper: ((Ngo ngo, _) =>
-          //                   ngo.member),
-          //               yValueMapper: ((Ngo ngo, _) =>
-          //                   ngo.memberNo))
-          //         ]),
-          ),
-    );
+    return Stack(alignment: Alignment.center, children: [
+      Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Container(
+          decoration: BoxDecoration(boxShadow: [
+            BoxShadow(
+              color: const Color(0xff717171).withOpacity(0.2),
+              blurRadius: 20.0,
+            ),
+          ]),
+          height: 500,
+          child: Card(child: FutureBuilder(
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              } else {
+                return SfCircularChart(
+                    title: ChartTitle(text: 'WIDOWS AFFLIATION TO NGO'),
+                    legend: Legend(
+                        isVisible: true,
+                        overflowMode: LegendItemOverflowMode.wrap),
+                    series: <CircularSeries>[
+                      PieSeries<Ngo, String>(
+                          dataSource: ngoType,
+                          xValueMapper: ((Ngo ngo, _) => ngo.member),
+                          yValueMapper: ((Ngo ngo, _) => ngo.memberNo))
+                    ]);
+              }
+            },
+          )),
+        ),
+      ),
+    ]);
   }
 }

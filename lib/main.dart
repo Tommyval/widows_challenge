@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:widows_challenge/PieChart/employment_status.dart';
-import 'package:widows_challenge/PieChart/ngomembership.dart';
+import 'package:widows_challenge/pages/mainpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Ngomemebership(),
+      home: MainPage(),
       debugShowCheckedModeBanner: false,
     );
   }
