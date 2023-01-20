@@ -80,36 +80,3 @@ class _BarchatState extends State<Barchat> {
     );
   }
 }
-
-// class _BarchatState extends State<Barchat> {
-//   List<ChartModel> chart = [];
-//   bool loading = true;
-//   final NetworkHelper _networkHelper = NetworkHelper();
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _networkHelper.getAssetsFromLocalJson();
-//     getData();
-//   }
-
-//   Future<void> getData() async {
-//     var chartInfo = await _networkHelper.getAssetsFromLocalJson();
- 
-//     setState(() {
-//       chart = chartInfo;
-//     });   
-//   }
-
-  
-//   List<charts.Series<ChartModel, String>> _createSampleData() {
-
-//     return [
-//       charts.Series<ChartModel, String>(
-//           data: chart,
-//           id: 'occupation',
-//           colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-//           domainFn: (ChartModel chatmodel, _) => chatmodel.lga!,
-//           measureFn: (ChartModel chatmodel, _) => chatmodel.numberOfChildren)
-//     ];
-//   }
