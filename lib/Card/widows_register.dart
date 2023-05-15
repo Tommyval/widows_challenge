@@ -29,11 +29,11 @@ class _WidowRegisterState extends State<WidowRegister> {
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Container(
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(
-            color: const Color(0xff717171).withOpacity(0.2),
-            blurRadius: 20.0,
-          ),
+      decoration: BoxDecoration(boxShadow: [
+        BoxShadow(
+          color: const Color(0xff717171).withOpacity(0.2),
+          blurRadius: 20.0,
+        ),
         ]),
         child: Card(
           child: Stack(

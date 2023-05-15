@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:widows_challenge/pages/mainpage.dart';
+import 'package:widows_challenge/ui/screens/widows_data/widows_data_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: MainPage(),
+      home: WidowsDataView(),
       debugShowCheckedModeBanner: false,
     );
   }

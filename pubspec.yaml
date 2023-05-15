@@ -31,8 +31,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  gap: ^3.0.0
   google_fonts: ^3.0.1
   http: ^0.13.5
+  stacked: ^3.2.5
+  stacked_services: ^1.0.2
   syncfusion_flutter_charts: ^20.4.43
 
 dev_dependencies:
