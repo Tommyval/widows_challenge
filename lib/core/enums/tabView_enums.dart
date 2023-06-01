@@ -1,0 +1,4 @@
+enum MyTabview{
+personsal,
+bank
+}
