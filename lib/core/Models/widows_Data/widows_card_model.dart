@@ -13,7 +13,7 @@ class WidowsCard {
   String? lga;
   String? bankName;
   String? employmentStatus;
-  int yearOfMarriage;
+  int? yearOfMarriage;
   String? ngoMembership;
   String? homeTown;
   String? oneOrTwo;
@@ -25,7 +25,7 @@ class WidowsCard {
   String? husbandOccupation;
   String? accountNumber;
   String? ngoName;
-  int numberOfChildren;
+  int? numberOfChildren;
   String? senatorialZone;
   String? image;
   WidowsCard({
@@ -171,7 +171,7 @@ class WidowsCard {
       husbandOccupation: json['husbandOccupation'] as String?,
       accountNumber: json['accountNumber'] as String?,
       ngoName: json['ngoName'] as String?,
-      numberOfChildren: json['numberOfChildren'] as int,
+      numberOfChildren: json['numberOfChildren'] as int?,
       senatorialZone: json['senatorialZone'] as String?,
       image:
           'https://img.freepik.com/free-photo/man-isolated-showing-emotions-end-gestures_1303-30095.jpg',

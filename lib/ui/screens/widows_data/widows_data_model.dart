@@ -1,9 +1,7 @@
-import 'dart:developer';
-
+import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../app/app_setup.locator.dart';
-import '../../../app/app_setup.router.dart';
 import '../../../core/Models/widows_Data/widows_card_model.dart';
 import '../../../core/services/api/widowsdata_service.dart';
 
@@ -15,22 +13,47 @@ class WidowsDataModel extends BaseViewModel {
 
   List<WidowsCard> get widowsCard => _widowsCards;
   NavigationService navigator = locator<NavigationService>();
-  final int _numberOfPages = 10;
-  int _currentPage = 0;
+  int currentPage = 1;
+  int pageSize = 18;
+  int totalWidows = 0;
+  int totalPages = 0;
+  bool hasMorePages = true;
+  bool get canLoadPreviousPage => currentPage > 0;
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
 
-  int get numberOfPages => _numberOfPages;
-  int get currentPage => _currentPage;
-  void changePageIndex(int index) {
-    _currentPage = index;
+  bool get canLoadNextPage => hasMorePages;
+  Future<void> fetchCardData() async {
+    _isLoading = true;
+    final response = await widowsDataService.fetchLgaCount();
+    totalWidows = response.lgaCount;
+    totalPages = (totalWidows / pageSize).ceil();
+    _widowsCards = await widowsDataService.fetchData(currentPage);
+   _isLoading = false;
+    //log(_widowsCards.last.fullName.toString());
+    //backdropfilter
+  }
+
+  void previousPage() {
+    if (canLoadPreviousPage) {
+      currentPage--;
+      widowsDataService.fetchData(currentPage);
+      notifyListeners();
+    }
+  }
+
+  void goToPage(int page) {
+    currentPage = page;
+    widowsDataService.fetchData(currentPage);
     notifyListeners();
   }
 
-  Future<void> fetchCardData() async {
-    _widowsCards = await widowsDataService.fetchData();
-    log('my ngoMembership: ${_widowsCards.first.ngoName}');
-  }
-
-  void navigateToPersonalScreen() {
-    navigationService.navigateTo(Routes.personalDetailsScreen);
+  // Function to go to the next page
+  void nextPage() {
+    if (canLoadNextPage) {
+      currentPage++;
+      widowsDataService.fetchData(currentPage);
+      notifyListeners();
+    }
   }
 }

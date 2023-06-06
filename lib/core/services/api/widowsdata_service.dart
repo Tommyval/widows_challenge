@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:stacked/stacked.dart';
 import 'package:http/http.dart' as http;
@@ -141,9 +140,11 @@ class WidowsDataService with ListenableServiceMixin {
     }
   }
 
-  Future<List<WidowsCard>> fetchData() async {
+  Future<List<WidowsCard>> fetchData(int page) async {
+    int pageSize = 18;
+    int lastIndex = page * pageSize - 1;
     var url = Uri.parse(
-        'https://us-central1-ondo-widows-f2964.cloudfunctions.net/allWidows');
+        'https://us-central1-ondo-widows-f2964.cloudfunctions.net/allWidows?lastIndex=$lastIndex');
 
     final response = await http.get(url);
 
@@ -155,7 +156,7 @@ class WidowsDataService with ListenableServiceMixin {
         List<WidowsCard> widowsCards = widowsData
             .map((widowData) => WidowsCard.fromMap(widowData))
             .toList();
-        //log(widowsCards.last.fullName!);
+        //log(widowsCards.last.fullName);
         return widowsCards;
       }
     } else {
