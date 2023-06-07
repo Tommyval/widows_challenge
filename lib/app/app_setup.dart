@@ -18,5 +18,6 @@ import '../core/services/api/widowsdata_service.dart';
 ], dependencies: [
   LazySingleton(classType: NavigationService),
   LazySingleton(classType:  WidowsDataService),
+  LazySingleton(classType:  DialogService),
 ])
 class AppSetup {}

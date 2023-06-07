@@ -283,7 +283,7 @@ class WidowsDataView extends StatelessWidget {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 100, right: 100, top: 30),
+                                      left: 60, right: 50, top: 30),
                                   child: Container(
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
@@ -292,7 +292,7 @@ class WidowsDataView extends StatelessWidget {
                                                 .withOpacity(0.3))),
                                     child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
                                         IconButton(
                                           icon: const Icon(Icons.arrow_back),
@@ -340,6 +340,97 @@ class WidowsDataView extends StatelessWidget {
                                             }
                                           },
                                         ),
+                                        Flexible(
+                                          child: IconButton(
+                                              onPressed: () async{
+                                               await viewModel.showGoToPageDialog();
+                                                // showDialog(
+                                                //   context: context,
+                                                //   builder: (context) {
+                                                //     return AlertDialog(
+                                                //       title: const Text(
+                                                //         'Go to Page',
+                                                //         style: TextStyle(
+                                                //             color: Color(
+                                                //                 0xff602BF8)),
+                                                //       ),
+                                                //       content: TextField(
+                                                //         controller: viewModel
+                                                //             .pageController,
+                                                //         decoration:
+                                                //             const InputDecoration(
+                                                //           enabledBorder:
+                                                //               UnderlineInputBorder(
+                                                //             borderSide:
+                                                //                 BorderSide(
+                                                //               color: Color(
+                                                //                   0xff602BF8),
+                                                //             ),
+                                                //           ),
+                                                //           focusedBorder:
+                                                //               UnderlineInputBorder(
+                                                //             borderSide:
+                                                //                 BorderSide(
+                                                //               color: Color(
+                                                //                   0xff602BF8),
+                                                //             ),
+                                                //           ),
+                                                //           focusColor:
+                                                //               Color(0xff602BF8),
+                                                //           labelStyle: TextStyle(
+                                                //             color: Color(
+                                                //                 0xff602BF8),
+                                                //           ),
+                                                //           labelText:
+                                                //               'Page Number',
+                                                //         ),
+                                                //         keyboardType:
+                                                //             TextInputType
+                                                //                 .number,
+                                                //       ),
+                                                //       actions: [
+                                                //         TextButton(
+                                                //           onPressed: () {
+                                                //             Navigator.pop(
+                                                //                 context);
+                                                //           },
+                                                //           child: const Text(
+                                                //             'Cancel',
+                                                //             style: TextStyle(
+                                                //                 color: Color(
+                                                //                     0xff602BF8)),
+                                                //           ),
+                                                //         ),
+                                                //         TextButton(
+                                                //           onPressed: () {
+                                                //             final pageNumber =
+                                                //                 int.tryParse(
+                                                //                     viewModel
+                                                //                         .pageController
+                                                //                         .text);
+                                                //             if (pageNumber !=
+                                                //                 null) {
+                                                //               viewModel.goToPage(
+                                                //                   pageNumber);
+                                                //               Navigator.pop(
+                                                //                   context);
+                                                //             }
+                                                //           },
+                                                //           child: const Text(
+                                                //             'Go',
+                                                //             style: TextStyle(
+                                                //                 color: Color(
+                                                //                     0xff602BF8)),
+                                                //           ),
+                                                //         ),
+                                                //       ],
+                                                //     );
+                                                //   },
+                                                // );
+                                              },
+                                              icon: const Icon(Icons
+                                                  .arrow_forward_ios_outlined)),
+                                        )
                                       ],
                                     ),
                                   ),
