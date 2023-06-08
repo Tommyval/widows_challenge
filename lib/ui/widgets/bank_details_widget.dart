@@ -15,7 +15,7 @@ class BankDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formattedreg =
+    final formattedregDate =
         DateFormat('yyyy-MM-dd').format(selectedWidow.registrationDate);
     return FutureBuilder(
       future: widowsDataModel.fetchCardData(),
@@ -166,7 +166,7 @@ class BankDetails extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 15),
                     child: Text(
-                      formattedreg,
+                      formattedregDate,
                       style: const TextStyle(
                           color: Color(0XFF656565), fontSize: 14),
                     ),
