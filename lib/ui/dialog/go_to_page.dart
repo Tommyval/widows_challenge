@@ -27,7 +27,8 @@ class GoToCustomDialog extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            final pageNumber = int.tryParse(widowsDataModel.pageController.text.trim());
+            final pageNumber =
+                int.tryParse(widowsDataModel.pageController.text.trim());
             if (pageNumber != null) {
               widowsDataModel.goToPage(pageNumber);
               Navigator.pop(context);

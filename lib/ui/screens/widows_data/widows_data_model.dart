@@ -6,7 +6,7 @@ import '../../../core/Models/widows_Data/widows_card_model.dart';
 import '../../../core/enums/dialog_enum.dart';
 import '../../../core/services/api/widowsdata_service.dart';
 
-class WidowsDataModel extends BaseViewModel {
+class   WidowsDataModel extends BaseViewModel {
   TextEditingController pageController = TextEditingController();
   NavigationService navigationService = locator<NavigationService>();
   WidowsDataService widowsDataService = locator<WidowsDataService>();
