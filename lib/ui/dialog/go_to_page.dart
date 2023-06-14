@@ -9,12 +9,28 @@ class GoToCustomDialog extends StatelessWidget {
       {super.key, required this.request, required this.completer});
   @override
   Widget build(BuildContext context) {
-    WidowsDataModel widowsDataModel = WidowsDataModel();
+    WidowsDataModel widowsDataModel = request.data as WidowsDataModel;
     return AlertDialog(
       title: const Text('Go to Page'),
       content: TextField(
         controller: widowsDataModel.pageController,
-        decoration: const InputDecoration(labelText: 'Page Number'),
+        decoration: const InputDecoration(
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Color(0xff602BF8),
+            ),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Color(0xff602BF8),
+            ),
+          ),
+          focusColor: Color(0xff602BF8),
+          labelStyle: TextStyle(
+            color: Color(0xff602BF8),
+          ),
+          labelText: 'Page Number',
+        ),
         keyboardType: TextInputType.number,
       ),
       actions: [
@@ -27,12 +43,6 @@ class GoToCustomDialog extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            final pageNumber =
-                int.tryParse(widowsDataModel.pageController.text.trim());
-            if (pageNumber != null) {
-              widowsDataModel.goToPage(pageNumber);
-              Navigator.pop(context);
-            }
             completer(DialogResponse(confirmed: true));
           },
           child: const Text('Go'),

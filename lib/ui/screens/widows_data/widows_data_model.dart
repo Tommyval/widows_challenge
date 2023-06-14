@@ -6,11 +6,11 @@ import '../../../core/Models/widows_Data/widows_card_model.dart';
 import '../../../core/enums/dialog_enum.dart';
 import '../../../core/services/api/widowsdata_service.dart';
 
-class   WidowsDataModel extends BaseViewModel {
+class WidowsDataModel extends BaseViewModel {
   TextEditingController pageController = TextEditingController();
   NavigationService navigationService = locator<NavigationService>();
   WidowsDataService widowsDataService = locator<WidowsDataService>();
-  var goToPageDialogService = locator<DialogService>();
+  var dialogService = locator<DialogService>();
   List<WidowsCard> _widowsCards = [];
   WidowsCard? selectedWidow;
 
@@ -33,19 +33,17 @@ class   WidowsDataModel extends BaseViewModel {
     totalPages = (totalWidows / pageSize).ceil();
     _widowsCards = await widowsDataService.fetchData(currentPage);
     _isLoading = false;
-    //log(_widowsCards.last.fullName.toString());
-    //backdropfilter
   }
 
   Future showGoToPageDialog() async {
-    var response = await goToPageDialogService.showCustomDialog(
+    var response = await dialogService.showCustomDialog(
       variant: DialogType.goToPage,
+      data: this,
     );
     if (response?.confirmed == true) {
       final pageNumber = int.tryParse(pageController.text.trim());
       if (pageNumber != null) {
         goToPage(pageNumber);
-        navigationService.back();
       }
     }
   }

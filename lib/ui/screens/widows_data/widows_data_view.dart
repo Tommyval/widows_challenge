@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import 'package:widows_challenge/ui/screens/personal/personal_details_view.dart';
 import 'package:widows_challenge/ui/screens/widows_data/widows_data_model.dart';
-
 import '../../../core/Models/widows_Data/widows_card_model.dart';
 
 class WidowsDataView extends StatelessWidget {
@@ -344,89 +343,6 @@ class WidowsDataView extends StatelessWidget {
                                               onPressed: () async {
                                                 await viewModel
                                                     .showGoToPageDialog();
-                                                //         showDialog(
-                                                //           context: context,
-                                                //           builder: (context) {
-                                                //             return AlertDialog(
-                                                //               title: const Text(
-                                                //                 'Go to Page',
-                                                //                 style: TextStyle(
-                                                //                     color: Color(
-                                                //                         0xff602BF8)),
-                                                //               ),
-                                                //               content: TextField(
-                                                //                 controller: viewModel
-                                                //                     .pageController,
-                                                //                 decoration:
-                                                //                     const InputDecoration(
-                                                //                   enabledBorder:
-                                                //                       UnderlineInputBorder(
-                                                //                     borderSide:
-                                                //                         BorderSide(
-                                                //                       color: Color(
-                                                //                           0xff602BF8),
-                                                //                     ),
-                                                //                   ),
-                                                //                   focusedBorder:
-                                                //                       UnderlineInputBorder(
-                                                //                     borderSide:
-                                                //                         BorderSide(
-                                                //                       color: Color(
-                                                //                           0xff602BF8),
-                                                //                     ),
-                                                //                   ),
-                                                //                   focusColor:
-                                                //                       Color(0xff602BF8),
-                                                //                   labelStyle: TextStyle(
-                                                //                     color: Color(
-                                                //                         0xff602BF8),
-                                                //                   ),
-                                                //                   labelText:
-                                                //                       'Page Number',
-                                                //                 ),
-                                                //                 keyboardType:
-                                                //                     TextInputType
-                                                //                         .number,
-                                                //               ),
-                                                //               actions: [
-                                                //                 TextButton(
-                                                //                   onPressed: () {
-                                                //                     Navigator.pop(
-                                                //                         context);
-                                                //                   },
-                                                //                   child: const Text(
-                                                //                     'Cancel',
-                                                //                     style: TextStyle(
-                                                //                         color: Color(
-                                                //                             0xff602BF8)),
-                                                //                   ),
-                                                //                 ),
-                                                //                 TextButton(
-                                                //                   onPressed: () {
-                                                //                     final pageNumber =
-                                                //                         int.tryParse(
-                                                //                             viewModel
-                                                //                                 .pageController
-                                                //                                 .text);
-                                                //                     if (pageNumber !=
-                                                //                         null) {
-                                                //                       viewModel.goToPage(
-                                                //                           pageNumber);
-                                                //                       Navigator.pop(
-                                                //                           context);
-                                                //                     }
-                                                //                   },
-                                                //                   child: const Text(
-                                                //                     'Go',
-                                                //                     style: TextStyle(
-                                                //                         color: Color(
-                                                //                             0xff602BF8)),
-                                                //                   ),
-                                                //                 ),
-                                                //               ],
-                                                //             );
-                                                //           },
-                                                //         );
                                               },
                                               icon: const Icon(Icons
                                                   .arrow_forward_ios_outlined)),

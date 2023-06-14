@@ -115,12 +115,26 @@ class BankDetails extends StatelessWidget {
                     width: 50,
                   ),
                   Flexible(
-                    child: Text(
-                      selectedWidow.ngoName ?? "Unknown",
-                      style: const TextStyle(
-                          color: Color(0XFF656565), fontSize: 14),
-                    ),
-                  )
+                    child: selectedWidow.ngoName != null &&
+                            selectedWidow.ngoName != "Unknown"
+                        ? Text(
+                            selectedWidow.ngoName.toString(),
+                            style: const TextStyle(
+                              color: Color(0XFF656565),
+                              fontSize: 14,
+                            ),
+                          )
+                        : const Padding(
+                            padding: EdgeInsets.only(left: 180),
+                            child: Text(
+                              "Unknown",
+                              style: TextStyle(
+                                color: Color(0XFF656565),
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                  ),
                 ],
               ),
               const Padding(
